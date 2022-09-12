@@ -214,7 +214,7 @@ class Hound:
 
 			# Extract all Domain admins
 			try:
-				if b'group' in row[1]['objectClass'] and b'Domain Admins' in row[1]['cn']:
+				if b'group' in row[1]['objectClass'] and (b'Domain Admins' in row[1]['cn'] or 'Администраторы домена'.encode() in row[1]['cn']):
 					member_blist = row[1]['member']
 					self.__domain_admins_cn = [member.decode('UTF-8') for member in member_blist]
 					for user_cn in self.__domain_admins_cn:
